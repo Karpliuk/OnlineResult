@@ -160,10 +160,10 @@
     <value>Зменшити</value>
   </data>
   <data name="LabelCode" xml:space="preserve">
-    <value>&lt;strong&gt;Код для доступа&lt;/strong&gt;&lt;br&gt;&lt;span&gt;до&amp;nbsp;веб-результатів:&lt;/span&gt;</value>
+    <value>&lt;strong&gt;Код для доступу&lt;/strong&gt;&lt;br&gt;&lt;span&gt;до&amp;nbsp;веб-результатів:&lt;/span&gt;</value>
   </data>
   <data name="LabelExample" xml:space="preserve">
-    <value>(Приклад на рисунку)</value>
+    <value>(Приклад на малюнку)</value>
   </data>
   <data name="LabelHeader" xml:space="preserve">
     <value>Для перегляду та збереження результатів&lt;br&gt;&lt;span&gt;введіть код у полі та натисніть кнопку:&lt;/span&gt;</value>
@@ -193,7 +193,7 @@
     <value>Результат мікробіології</value>
   </data>
   <data name="StatusLabelExeption" xml:space="preserve">
-    <value>Відсутній зв'язок з лабораторією, спопробуйте пізніше</value>
+    <value>Відсутній зв'язок з лабораторією, попробуйте пізніше</value>
   </data>
   <data name="StatusLabelNotReady" xml:space="preserve">
     <value>Ваше замовлення не готове, показані попередні результати</value>
@@ -202,7 +202,7 @@
     <value>По вашому замовленню результатів немає</value>
   </data>
   <data name="StatusLabelOrderIsNotFound" xml:space="preserve">
-    <value>Замовлення не знайдено. Перевірте введений код та спопробуйте іще раз. Зверніть увагу, що всі букви повинні бути латинськими, а великі та малі відрізняються</value>
+    <value>Замовлення не знайдено. Перевірте введений код та попробуйте іще раз. Зверніть увагу, що всі букви повинні бути латинськими, а великі та малі відрізняються</value>
   </data>
   <data name="StatusLabelPerezabor" xml:space="preserve">
     <value>По заданому замовленню результати відсутні. Для уточнення зверніться в контакт центр або пункт Cінево</value>
