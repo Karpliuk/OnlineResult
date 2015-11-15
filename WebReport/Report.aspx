@@ -174,7 +174,7 @@
          
     <div class="row" style="text-align:center;"> 
     <div class="tab-content">
-        <div id="panelPatients" class="tab-pane fade" runat="server">
+        <div id="panelMainResult" class="tab-pane fade" runat="server">
             <%-- рендеринг MainResult --%>
             <asp:Label ID="ErrorDownloadMainResultLabel" runat="server"></asp:Label>   
             <%--<iframe id="MainIframe" src="" width="780px" height="1050px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> --%>

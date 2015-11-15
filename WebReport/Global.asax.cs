@@ -19,7 +19,7 @@ namespace WebReport
 
         void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapPageRoute("Route", "{lang}/{page}", "~/Report.aspx");
+            routes.MapPageRoute("Route", "{lang}/{page}.aspx", "~/{page}.aspx");
         }
 
         protected void Session_Start(object sender, EventArgs e)
