@@ -141,6 +141,7 @@ namespace WebReport
                         {
                             this.StatusLabel.ForeColor = System.Drawing.Color.Red;
                             this.StatusLabel.Text = GetLocalResourceObject("StatusLabelPerezabor").ToString();
+                            logger.Error(this.StatusLabel.Text + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
                             return;
                         }
                         if ((resultSummary.Results.Count() == 0) && (resultSummary.IsFinal == false)) // по вашему заказу нет результатов
@@ -313,6 +314,10 @@ namespace WebReport
             {
                 logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
             }
+            catch (HttpException ex)
+            {
+                logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+            }
             catch (Exception ex)
             {
                 logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
@@ -341,6 +346,10 @@ namespace WebReport
             catch (System.Threading.ThreadAbortException ex)
             {
                 logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+            }
+            catch(HttpException ex)
+            {
+                logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
             }
             catch (Exception ex)
             {
@@ -372,6 +381,10 @@ namespace WebReport
             catch (System.Threading.ThreadAbortException ex)
             {
                 logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+            }
+            catch (HttpException ex)
+            {
+                logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
             }
             catch (Exception ex)
             {
@@ -449,6 +462,10 @@ namespace WebReport
                 {
                     logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
                 }
+                catch (HttpException ex)
+                {
+                    logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                }
                 catch (Exception ex)
                 {
                     logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
@@ -482,6 +499,10 @@ namespace WebReport
                 catch (System.Threading.ThreadAbortException ex)
                 {
                     logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                }
+                catch (HttpException ex)
+                {
+                    logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
                 }
                 catch (Exception ex)
                 {
@@ -517,6 +538,10 @@ namespace WebReport
                 {
                     logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
                 }
+                catch (HttpException ex)
+                {
+                    logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                }
                 catch (Exception ex)
                 {
                     logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
@@ -551,6 +576,10 @@ namespace WebReport
                 {
                     logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
                 }
+                catch (HttpException ex)
+                {
+                    logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                }
                 catch (Exception ex)
                 {
                     logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
@@ -561,10 +590,10 @@ namespace WebReport
         protected void ResultAllExportButton_Click(object sender, ImageClickEventArgs e)
         {
             string zipFileName = null;
-            try
-            {
-                DirectoryInfo directoryinfo = Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + DateTime.Now.ToString("dd MMMM yyyy", CultureInfo.GetCultureInfo("en", "en")) + " SynevoResults" + Session["barcode"]);
+            DirectoryInfo directoryinfo = Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + DateTime.Now.ToString("dd MMMM yyyy", CultureInfo.GetCultureInfo("en", "en")) + " SynevoResults" + Session["barcode"]);
 
+            try
+            {              
                 WebClient webClient = new WebClient();
                 string login = "", pass = "";
                 login = ConfigurationManager.AppSettings["loginForService"];
@@ -576,42 +605,62 @@ namespace WebReport
                 string fileNameAdd = "SynevoAddResults" + Session["barcode"] + "_";
                 zipFileName = directoryinfo.FullName + ".zip";
 
-                if (Session["SilabMainResultUri"] != null)
+                try
                 {
-                    webClient.DownloadFile(Session["SilabMainResultUri"].ToString(), Path.Combine(directoryinfo.FullName, fileNameMain));
-                }
-                if (Session["SilabMicroResultUri"] != null)
-                {
-                    webClient.DownloadFile(Session["SilabMicroResultUri"].ToString(), Path.Combine(directoryinfo.FullName, fileNameMicro));
-                }
-                if (Session["ExtraAttachmentUri"] != null)
-                {
-                    ArrayList arrExtraAttachment = (ArrayList)Session["ExtraAttachmentUri"];
-                    for (int i = 0; i < arrExtraAttachment.Count; i++)
+                    if (Session["SilabMainResultUri"] != null)
                     {
-                        webClient.DownloadFile(arrExtraAttachment[i].ToString(), Path.Combine(directoryinfo.FullName, fileNameAdd + i + ".pdf"));
+                        webClient.DownloadFile(Session["SilabMainResultUri"].ToString(), Path.Combine(directoryinfo.FullName, fileNameMain));
                     }
                 }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                }
+                try
+                {
+                    if (Session["SilabMicroResultUri"] != null)
+                    {
+                        webClient.DownloadFile(Session["SilabMicroResultUri"].ToString(), Path.Combine(directoryinfo.FullName, fileNameMicro));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                }
 
+                try
+                {
+                    if (Session["ExtraAttachmentUri"] != null)
+                    {
+                        ArrayList arrExtraAttachment = (ArrayList)Session["ExtraAttachmentUri"];
+                        for (int i = 0; i < arrExtraAttachment.Count; i++)
+                        {
+                            webClient.DownloadFile(arrExtraAttachment[i].ToString(), Path.Combine(directoryinfo.FullName, fileNameAdd + i + ".pdf"));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                }
 
                 ZipFile.CreateFromDirectory(directoryinfo.FullName, zipFileName);
                 directoryinfo.Delete(true);
 
                 Response.Clear();
-                Response.AppendHeader("Content-Disposition", "attachment; filename=" + directoryinfo.Name+".zip");
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + directoryinfo.Name + ".zip");
                 Response.ContentType = "application/zip";
                 Response.WriteFile(zipFileName);
                 Response.Flush();
                 Response.SuppressContent = true;
                 HttpContext.Current.ApplicationInstance.CompleteRequest();
             }
-            catch (System.Threading.ThreadAbortException ex)
-            {
-                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
-            }
             catch (Exception ex)
             {
-                 logger.Warn(ex.Message +" | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                this.StatusLabel.ForeColor = System.Drawing.Color.Red;
+                this.StatusLabel.Text = GetLocalResourceObject("StatusLabelExeption").ToString();
+                logger.Error(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+                directoryinfo.Delete(true);
             }
             finally
             {
@@ -619,7 +668,7 @@ namespace WebReport
                 {
                     File.Delete(zipFileName);
                 }
-            }                
+            }
         }
 
         protected void BtnClearSession_Click(object sender, ImageClickEventArgs e)

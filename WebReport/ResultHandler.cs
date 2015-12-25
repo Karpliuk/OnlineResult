@@ -56,67 +56,82 @@ namespace WebReport
                 if (String.Equals("ExtraAttachment", context.Request.QueryString["ExtraAttachment"]))
                 {
                     ArrayList arrExtraAttachment_ = (ArrayList)context.Session["ExtraAttachmentUri"];
-                    if (arrExtraAttachment_.Count >= 1)
+                    if(arrExtraAttachment_ != null)
                     {
-                        arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[0].ToString());
-                        context.Response.Clear();
-                        context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add.pdf");
-                        context.Response.ContentType = "application/pdf";
-                        context.Response.BinaryWrite(arrExtraAttachment);
-                        context.Response.Flush();
-                    }
+                        if (arrExtraAttachment_.Count >= 1)
+                        {
+                            arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[0].ToString());
+                            context.Response.Clear();
+                            context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add.pdf");
+                            context.Response.ContentType = "application/pdf";
+                            context.Response.BinaryWrite(arrExtraAttachment);
+                            context.Response.Flush();
+                        }
+                    }                   
                 }
                 if (String.Equals("ExtraAttachment2", context.Request.QueryString["ExtraAttachment"]))
                 {
                     ArrayList arrExtraAttachment_ = (ArrayList)context.Session["ExtraAttachmentUri"];
-                    if (arrExtraAttachment_.Count >= 2)
+                    if (arrExtraAttachment_ != null)
                     {
-                        arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[1].ToString());
-                        context.Response.Clear();
-                        context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add2.pdf");
-                        context.Response.ContentType = "application/pdf";
-                        context.Response.BinaryWrite(arrExtraAttachment);
-                        context.Response.Flush();
-                    }
+                        if (arrExtraAttachment_.Count >= 2)
+                        {
+                            arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[1].ToString());
+                            context.Response.Clear();
+                            context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add2.pdf");
+                            context.Response.ContentType = "application/pdf";
+                            context.Response.BinaryWrite(arrExtraAttachment);
+                            context.Response.Flush();
+                        }
+                    }                       
                 }
                 if (String.Equals("ExtraAttachment3", context.Request.QueryString["ExtraAttachment"]))
                 {
                     ArrayList arrExtraAttachment_ = (ArrayList)context.Session["ExtraAttachmentUri"];
-                    if (arrExtraAttachment_.Count >= 3)
+                    if (arrExtraAttachment_ != null)
                     {
-                        arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[2].ToString());
-                        context.Response.Clear();
-                        context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add3.pdf");
-                        context.Response.ContentType = "application/pdf";
-                        context.Response.BinaryWrite(arrExtraAttachment);
-                        context.Response.Flush();
-                    }
+                        if (arrExtraAttachment_.Count >= 3)
+                        {
+                            arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[2].ToString());
+                            context.Response.Clear();
+                            context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add3.pdf");
+                            context.Response.ContentType = "application/pdf";
+                            context.Response.BinaryWrite(arrExtraAttachment);
+                            context.Response.Flush();
+                        }
+                    }                        
                 }
                 if (String.Equals("ExtraAttachment4", context.Request.QueryString["ExtraAttachment"]))
                 {
                     ArrayList arrExtraAttachment_ = (ArrayList)context.Session["ExtraAttachmentUri"];
-                    if (arrExtraAttachment_.Count >= 4)
+                    if (arrExtraAttachment_ != null)
                     {
-                        arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[3].ToString());
-                        context.Response.Clear();
-                        context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add4.pdf");
-                        context.Response.ContentType = "application/pdf";
-                        context.Response.BinaryWrite(arrExtraAttachment);
-                        context.Response.Flush();
-                    }
+                        if (arrExtraAttachment_.Count >= 4)
+                        {
+                            arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[3].ToString());
+                            context.Response.Clear();
+                            context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add4.pdf");
+                            context.Response.ContentType = "application/pdf";
+                            context.Response.BinaryWrite(arrExtraAttachment);
+                            context.Response.Flush();
+                        }
+                    }                       
                 }
                 if (String.Equals("ExtraAttachment5", context.Request.QueryString["ExtraAttachment"]))
                 {
                     ArrayList arrExtraAttachment_ = (ArrayList)context.Session["ExtraAttachmentUri"];
-                    if (arrExtraAttachment_.Count >= 5)
+                    if (arrExtraAttachment_ != null)
                     {
-                        arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[4].ToString());
-                        context.Response.Clear();
-                        context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add5.pdf");
-                        context.Response.ContentType = "application/pdf";
-                        context.Response.BinaryWrite(arrExtraAttachment);
-                        context.Response.Flush();
-                    }
+                        if (arrExtraAttachment_.Count >= 5)
+                        {
+                            arrExtraAttachment = webClient.DownloadData(arrExtraAttachment_[4].ToString());
+                            context.Response.Clear();
+                            context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add5.pdf");
+                            context.Response.ContentType = "application/pdf";
+                            context.Response.BinaryWrite(arrExtraAttachment);
+                            context.Response.Flush();
+                        }
+                    }                       
                 }
                 //if ((context.Session["ExtraAttachmentUri"] != null) && (context.Request.Form["ExtraAttachment"] != null || context.Request.QueryString["ExtraAttachment"] != null))
                 //{
@@ -133,6 +148,10 @@ namespace WebReport
             catch (System.Threading.ThreadAbortException ex)
             {
                 logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')));
+            }
+            catch (HttpException ex)
+            {
+                logger.Info(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')));
             }
             catch (Exception ex)
             {

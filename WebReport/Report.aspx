@@ -178,32 +178,53 @@
             <%-- рендеринг MainResult --%>
             <asp:Label ID="ErrorDownloadMainResultLabel" runat="server"></asp:Label>   
             <%--<iframe id="MainIframe" src="" width="780px" height="1050px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> --%>
-            <object data="ResultHandler?Main=Main" type="application/pdf" width="780px" height="1050px" ></object>
+            <%--<object data="ResultHandler?Main=Main" type="application/pdf" width="670px" height="950px" ></object>--%>
+            <object data="ResultHandler?Main=Main" type="application/pdf" width="670px" height="920px">
+                    <embed src="ResultHandler?Main=Main" type="application/pdf" />
+            </object>
         </div>
 
         <div id="panelMicroResult" class="tab-pane fade" runat="server">
                 <%-- рендеринг MicroResult --%>
             <br /> 
             <asp:Label ID="ErrorDownloadMicroResultLabel" runat="server"></asp:Label>
-            <object data="ResultHandler?Micro=Micro" type="application/pdf" width="780px" height="1050px" ></object>  
+            <%--<object data="ResultHandler?Micro=Micro" type="application/pdf" width="670px" height="950px" ></object>  --%>
+            <object data="ResultHandler?Micro=Micro" type="application/pdf" width="670px" height="920px"> 
+                    <embed src="ResultHandler?Micro=Micro" type="application/pdf" />
+            </object>
         </div>
 
         <div id="panelExtraAttachmentResult" class="tab-pane fade" runat="server">
             <%-- рендеринг ExtraAttachment --%>
             <asp:Label ID="ErrorDownloadExtraAttachmentResultLabel" runat="server"></asp:Label>
-            <object data="ResultHandler?ExtraAttachment=ExtraAttachment" type="application/pdf" width="780px" height="1050px" ></object>
+            <%--<object data="ResultHandler?ExtraAttachment=ExtraAttachment" type="application/pdf" width="670px" height="950px" ></object>--%>
+	    <object data="ResultHandler?ExtraAttachment=ExtraAttachment" type="application/pdf" width="670px" height="920px">
+                    <embed src="ResultHandler?ExtraAttachment=ExtraAttachment" type="application/pdf" />
+            </object>
         </div> 
         <div id="panelExtraAttachmentResult2" class="tab-pane fade" runat="server">
-            <object data="ResultHandler?ExtraAttachment=ExtraAttachment2" type="application/pdf" width="780px" height="1050px" ></object>
+            <%--<object data="ResultHandler?ExtraAttachment=ExtraAttachment2" type="application/pdf" width="670px" height="950px" ></object>--%>
+	    <object data="ResultHandler?ExtraAttachment=ExtraAttachment2" type="application/pdf" width="670px" height="920px"> 
+                    <embed src="ResultHandler?ExtraAttachment=ExtraAttachment2" type="application/pdf" />
+            </object>
         </div> 
         <div id="panelExtraAttachmentResult3" class="tab-pane fade" runat="server">
-            <object data="ResultHandler?ExtraAttachment=ExtraAttachment3" type="application/pdf" width="780px" height="1050px" ></object>
+            <%--<object data="ResultHandler?ExtraAttachment=ExtraAttachment3" type="application/pdf" width="670px" height="950px" ></object>--%>
+	    <object data="ResultHandler?ExtraAttachment=ExtraAttachment3" type="application/pdf" width="670px" height="920px"> 
+                    <embed src="ResultHandler?ExtraAttachment=ExtraAttachment3" type="application/pdf" />
+            </object>
         </div> 
         <div id="panelExtraAttachmentResult4" class="tab-pane fade" runat="server">
-            <object data="ResultHandler?ExtraAttachment=ExtraAttachment4" type="application/pdf" width="780px" height="1050px" ></object>
+            <%--<object data="ResultHandler?ExtraAttachment=ExtraAttachment4" type="application/pdf" width="670px" height="950px" ></object>--%>
+	    <object data="ResultHandler?ExtraAttachment=ExtraAttachment4" type="application/pdf" width="670px" height="920px">
+                    <embed src="ResultHandler?ExtraAttachment=ExtraAttachment4" type="application/pdf" />
+            </object>
         </div> 
         <div id="panelExtraAttachmentResult5" class="tab-pane fade" runat="server">
-            <object data="ResultHandler?ExtraAttachment=ExtraAttachment5" type="application/pdf" width="780px" height="1050px" ></object>
+            <%--<object data="ResultHandler?ExtraAttachment=ExtraAttachment5" type="application/pdf" width="670px" height="950px" ></object>--%>
+	    <object data="ResultHandler?ExtraAttachment=ExtraAttachment5" type="application/pdf" width="670px" height="920px">
+                    <embed src="ResultHandler?ExtraAttachment=ExtraAttachment5" type="application/pdf" />
+            </object>
         </div> 
 
     </div> 
