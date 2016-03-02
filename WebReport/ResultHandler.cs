@@ -7,7 +7,7 @@ using System.Collections;
 using NLog;
 using System.Text;
 using System.Configuration;
-using System.Threading;
+using System.Web.UI;
 
 namespace WebReport
 {
@@ -155,7 +155,46 @@ namespace WebReport
             }
             catch (Exception ex)
             {
+                string filename = String.Empty;
+                if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/uk/"))
+                {
+                    filename = AppDomain.CurrentDomain.BaseDirectory + "uk.pdf";
+                }
+                else
+                if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/ru/"))
+                {
+                    filename = AppDomain.CurrentDomain.BaseDirectory + "ru.pdf";
+                }
+                else
+                if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/en/"))
+                {
+                    filename = AppDomain.CurrentDomain.BaseDirectory + "en.pdf";
+                }
+
+                //string lang = (HttpContext.Current.Request.Url.AbsolutePath.Remove(0, 11)).Substring(0,2);
+                //switch (lang)
+                //{
+                //    case "uk":
+                //               filename = AppDomain.CurrentDomain.BaseDirectory + "uk.pdf";
+                //               break;
+                //    case "ru":
+                //               filename = AppDomain.CurrentDomain.BaseDirectory + "ru.pdf";
+                //               break;
+                //    case "en":
+                //               filename = AppDomain.CurrentDomain.BaseDirectory + "en.pdf";
+                //               break;
+                //    default:
+                //               filename = AppDomain.CurrentDomain.BaseDirectory + "uk.pdf";
+                //               break;
+
+                //}
+
                 logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')));
+                context.Response.Clear();
+                context.Response.AppendHeader("Content-Disposition", "inline; filename=SynevoAddResults" + context.Session["barcode"] + "_Add5.pdf");
+                context.Response.ContentType = "application/pdf";
+                context.Response.WriteFile(filename);
+                context.Response.Flush();
             }          
         }   
         #endregion

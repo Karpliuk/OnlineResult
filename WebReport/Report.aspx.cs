@@ -12,6 +12,7 @@ using System.Collections;
 using NLog;
 using System.Configuration;
 using System.Globalization;
+using System.Reflection.Emit;
 using System.Web.DynamicData;
 
 namespace WebReport
@@ -117,7 +118,8 @@ namespace WebReport
                     client.ClientCredentials.Windows.ClientCredential.UserName = login;
                     client.ClientCredentials.Windows.ClientCredential.Password = pass;
 
-                    var resultSummary = client.GetResultSummaryByWebCode(WebAccessCodeTextBox.Text);     
+                    var resultSummary = client.GetResultSummaryByWebCode(WebAccessCodeTextBox.Text);
+                    this.logger.Trace("CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text + " | IP-адрес: " + HttpContext.Current.Request.UserHostAddress);
                     if (resultSummary == null)
                     {
                         this.StatusLabel.ForeColor = System.Drawing.Color.Red;
@@ -126,7 +128,6 @@ namespace WebReport
                     else
                     {
                         this.StatusLabel.Text = null;
-
                         if ((resultSummary.Results.Count() > 0) && (resultSummary.IsFinal == true)) // ваш заказ готов результаты есть
                         {
                             this.StatusLabel.ForeColor = System.Drawing.Color.Green;
@@ -150,7 +151,6 @@ namespace WebReport
                             this.StatusLabel.Text = GetLocalResourceObject("StatusLabelNotResult").ToString();
                             return;
                         }
-
                         this.PanelResult.Visible = true;
                         Session.RemoveAll();
                         Session["barcode"] = resultSummary.Barcode.ToString();
