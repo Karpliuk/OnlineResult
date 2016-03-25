@@ -103,6 +103,15 @@ namespace WebReport {
         protected global::System.Web.UI.WebControls.TextBox WebAccessCodeTextBox;
         
         /// <summary>
+        /// Recaptcha элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::Recaptcha.Web.UI.Controls.Recaptcha Recaptcha;
+        
+        /// <summary>
         /// ErrorLabel элемент управления.
         /// </summary>
         /// <remarks>

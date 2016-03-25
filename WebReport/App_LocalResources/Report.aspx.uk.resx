@@ -129,6 +129,12 @@
   <data name="ButtonToolTip" xml:space="preserve">
     <value>Зберегти як PDF</value>
   </data>
+  <data name="CaptchaIncorrect" xml:space="preserve">
+    <value>Невірно введений захисний код</value>
+  </data>
+  <data name="CaptchaNullOrEmpty" xml:space="preserve">
+    <value>Захисний код не може бути порожнім</value>
+  </data>
   <data name="ErrorDownloadResultLabel" xml:space="preserve">
     <value>Результати по замовленню відсутні.</value>
   </data>

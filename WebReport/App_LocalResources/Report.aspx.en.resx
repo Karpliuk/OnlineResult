@@ -129,6 +129,12 @@
   <data name="ButtonToolTip" xml:space="preserve">
     <value>Save as PDF</value>
   </data>
+  <data name="CaptchaIncorrect" xml:space="preserve">
+    <value>Incorrect captcha response</value>
+  </data>
+  <data name="CaptchaNullOrEmpty" xml:space="preserve">
+    <value>Captcha cannot be empty</value>
+  </data>
   <data name="ErrorDownloadResultLabel" xml:space="preserve">
     <value>There are no results for the order.</value>
   </data>

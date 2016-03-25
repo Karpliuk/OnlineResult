@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="WebReport.Report"%> 
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="WebReport.Report"%>
+<%@ Register TagPrefix="cc1" Namespace="Recaptcha.Web.UI.Controls" Assembly="Recaptcha.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=171a6ec5fa4b1644" %>
 
 <!DOCTYPE html>
 
@@ -39,20 +40,30 @@
 <div class="col-xs-12" style="padding-left:40px">
     <asp:Label ID="Label2" runat="server" Text="<%$ Resources:LabelCode %>"></asp:Label>
     </div>  
-</div> 
+</div>
+
 <div class="row">
 <div class="col-xs-4" style="padding-left:40px">
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="https://www.synevo.ua/uk/kod-dostupa" Target="_blank"><i id="ex-on-img"><span>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="http://www.synevo.ua/uk/kod-dostupa" Target="_blank"><i id="ex-on-img"><span>
             <asp:Label ID="Label3" runat="server" Text ="<%$ Resources:LabelExample %>"></asp:Label></span></i></asp:HyperLink>             
     </div> 
-</div> 
+</div>  
 
 <div class="row">
 <div class="col-xs-12" style="padding-top:0px; padding-left:40px">
         <asp:TextBox ID="WebAccessCodeTextBox" runat="server" MaxLength="20"  OnTextChanged="WebAccessCodeTextBox_TextChanged"></asp:TextBox>
-    </div>     
+    </div>   
 </div> 
 
+<div class="row">
+<div class="col-xs-12" style="padding-top:5px; padding-left: 40px; padding-bottom: 10px;" >
+            <cc1:Recaptcha ID="Recaptcha" runat="server"
+                   PublicKey="6LcSwxoTAAAAAAWsVNPBz9hJMIq6NuqH5wLmY01U"
+                   PrivateKey="6LcSwxoTAAAAAHkNdqVCBWOwdvFZT8TMlf0iHp-N" 
+                   Theme="White" style="display: none;"/>
+    </div>
+</div> 
+    
 
 <div class="row">
 <div class="col-xs-12" style="padding-top:0px; padding-left:40px">
@@ -105,7 +116,7 @@
  
            
          
-    <ul class="nav nav-tabs" style="margin-top:30px">
+    <ul class="nav nav-tabs" style="margin-top:10px">
         <li id="tabPanelMainResult" runat="server">
             <a data-toggle="tab" href="#panelMainResult" style="text-align: left; padding-right: 40px;"><asp:Label ID="ResultPDFLabel" runat="server" Font-Bold="True" Font-Size="Large"></asp:Label></a>
         </li>
